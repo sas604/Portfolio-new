@@ -1,20 +1,26 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-
+:root{
+  --dark-blue: #023047;
+  --yellow:#FFA530;
+  --light-blue:#8ECAE6;
+}
   html {
     box-sizing: border-box;
-    height:100%;
   }
   *, *:before, *:after {
     box-sizing: inherit;
   }
   html,body {
-    min-height: 100%;
     position: relative;
-    overflow-x: hidden;
   }
-
+ ul{
+   margin:0;
+   padding:0;
+   list-style: none;
+ }
+ 
 `;
 
 export default GlobalStyles;

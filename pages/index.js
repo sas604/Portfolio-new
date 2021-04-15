@@ -1,11 +1,10 @@
+import Hello from '../components/Hello';
 import Layout from '../components/Layout';
 
 export default function Home() {
   return (
     <Layout>
-      <section>
-        <h1>Hello </h1>
-      </section>
+      <Hello />
     </Layout>
   );
 }
