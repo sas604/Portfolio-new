@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-const NavStyles = styled.nav`
+export const NavStyles = styled.nav`
   margin-left: auto;
 
   ul {
@@ -26,6 +26,9 @@ const NavStyles = styled.nav`
       transform: scale(0);
       transform-origin: left;
     }
+  }
+  @media (max-width: 650px) {
+    display: none;
   }
 `;
 

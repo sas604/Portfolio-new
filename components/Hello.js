@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useViewportScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const HelloStyle = styled.section`
-  padding: 1.5rem 1.5rem 6rem;
+  padding: 4.5rem 1.5rem 4.5rem;
   background-color: var(--yellow);
   position: relative;
   overflow: hidden;
@@ -42,10 +42,21 @@ const HelloWrapper = styled.div`
   div:first-of-type {
     align-self: flex-end;
   }
-  div + div {
+  .image {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
     margin-left: 1.5rem !important;
     flex: 250px;
+    @media (max-width: 650px) {
+      position: absolute;
+      width: 250px;
+      z-index: -1;
+      left: calc(47vw - 29px);
+      top: -73px;
+    }
   }
+
   h1 {
     font-size: clamp(1.8rem, 5vw, 3.454rem);
     margin: 0;
@@ -60,12 +71,18 @@ const HelloWrapper = styled.div`
 const ButtonGroup = styled.div`
   margin-top: 1.5rem;
   display: flex;
+  @media (max-width: 650px) {
+    flex-direction: column;
+  }
 `;
 const CTA = styled.a`
   display: block;
   background-color: ${({ bg }) => bg};
-  color: white;
+  color: ${({ bg }) =>
+    bg === 'var(--light-blue)' ? 'var(--dark-blue)' : 'white'};
   flex: 1;
+  border-radius: 3px;
+  font-weight: 700;
   max-width: 300px;
   text-align: center;
   text-transform: uppercase;
@@ -78,6 +95,13 @@ const CTA = styled.a`
   :hover {
     background-color: white;
     color: var(--dark-blue);
+  }
+  @media (max-width: 650px) {
+    max-width: 180px;
+    &:last-of-type {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
   }
 `;
 const header = {
@@ -101,8 +125,6 @@ const balls = {
   },
 };
 export default function Hello() {
-  const { scrollYProgress } = useViewportScroll();
-  console.log(scrollYProgress);
   return (
     <HelloStyle>
       <motion.div
@@ -130,7 +152,15 @@ export default function Hello() {
             </Link>
           </ButtonGroup>
         </motion.div>
-        <Image width="450" height="500" objectFit="contain" src="/me.png" />
+        <div className="image">
+          <Image
+            width="450"
+            priority
+            height="500"
+            objectFit="contain"
+            src="/me.png"
+          />
+        </div>
       </HelloWrapper>
     </HelloStyle>
   );

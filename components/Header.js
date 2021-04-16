@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import Burger from './burger';
 import Logo from './logo';
+import MobileNav from './MobileNav';
 import Nav from './Nav';
 
 const HeaderStyle = styled.header`
@@ -18,6 +20,7 @@ export default function Header() {
           <Logo />
         </a>
       </Link>
+      <Burger />
       <Nav />
     </HeaderStyle>
   );
