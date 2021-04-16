@@ -17,13 +17,16 @@ const MobileNavStyle = styled.nav`
     font-size: 1.25rem;
     font-weight: 700;
   }
+  @media (min-width: 650px) {
+    display: none;
+  }
 `;
 const MotionNav = {
   open: {
     x: 0,
     transition: {
       when: 'beforeChildren',
-      staggerChildren: 0.3,
+      staggerChildren: 0.1,
       stiffness: 60,
     },
   },
@@ -31,7 +34,7 @@ const MotionNav = {
     x: 300,
     transition: {
       when: 'afterChildren',
-      staggerChildren: 0.05,
+      staggerChildren: 0.1,
       stiffness: 60,
     },
   },

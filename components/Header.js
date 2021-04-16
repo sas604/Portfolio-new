@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import Burger from './burger';
+import Burger from './Burger';
 import Logo from './logo';
-import MobileNav from './MobileNav';
 import Nav from './Nav';
 
 const HeaderStyle = styled.header`

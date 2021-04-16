@@ -6,24 +6,29 @@ const GlobalStyles = createGlobalStyle`
   --yellow:#FFA530;
   --light-blue:#8ECAE6;
 }
-  html {
-    height:100%;
-    box-sizing: border-box;
-  
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-  html,body {
-    min-height: 100vh;
-    overflow-x : hidden;
-    position: relative;
-  }
+html {
+  box-sizing: border-box;
+  height:100%;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+html,body{
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  max-height:100%;
+}
  ul{
    margin:0;
    padding:0;
    list-style: none;
  }
+section {
+  padding: 4.5rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
  #mobile-menu{
   position: absolute;
     top: 0;

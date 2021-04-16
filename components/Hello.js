@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 
 const HelloStyle = styled.section`
   padding: 4.5rem 1.5rem 4.5rem;
+  max-width: unset;
   background-color: var(--yellow);
   position: relative;
   overflow: hidden;
