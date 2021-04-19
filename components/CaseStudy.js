@@ -108,17 +108,17 @@ export default function CaseStudy({ project, num }) {
                 boxShadow: '0px 0px 0px 0px #023047',
               }}
             >
-              Check it out
+              Case study
             </FancyButton>
           </Link>
           <div className="links">
             <Link href={project.gitHub}>
-              <a>
+              <a aria-label="GitHub">
                 <AiFillGithub />
               </a>
             </Link>
             <Link href={project.link}>
-              <a>
+              <a aria-label="Link to the project">
                 <AiOutlineLink />
               </a>
             </Link>
