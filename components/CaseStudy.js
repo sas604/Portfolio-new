@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { AiFillGithub, AiOutlineLink } from 'react-icons/ai';
 
 const FancyButton = styled(motion.a)`
   display: block;
@@ -16,18 +17,32 @@ const FancyButton = styled(motion.a)`
   line-height: 3rem;
   box-shadow: -6px -6px 0px 0px #023047;
   margin-top: 1.5rem;
+  flex: 100px;
 `;
+
 const CaseStudyStyle = styled.div`
   padding: 4.5rem 0;
   display: flex;
   gap: 1.5rem;
   ${({ num }) => num === 1 && 'flex-direction: row-reverse;'}
-
+  .links-group {
+    display: flex;
+    align-items: flex-end;
+  }
+  .links {
+    margin-left: 1.5rem;
+    display: flex;
+    font-size: 40px;
+    * + * {
+      margin-left: 1.5rem;
+    }
+  }
   .caseStudy-image {
     position: relative;
     display: flex;
     padding: 60px 0;
-    img {
+    img,
+    .links {
       padding: 10px !important;
       -webkit-filter: drop-shadow(5px 5px 5px #222);
       filter: drop-shadow(1px 1px 4px #02304796);
@@ -84,17 +99,31 @@ export default function CaseStudy({ project, num }) {
           )}
         </p>
         <p>{project.description}</p>
-        <Link href={`/${project.title}`} passHref>
-          <FancyButton
-            whileTap={{
-              x: -6,
-              y: -6,
-              boxShadow: '0px 0px 0px 0px #023047',
-            }}
-          >
-            Check it out
-          </FancyButton>
-        </Link>
+        <div className="links-group">
+          <Link href={`/${project.title}`} passHref>
+            <FancyButton
+              whileTap={{
+                x: -6,
+                y: -6,
+                boxShadow: '0px 0px 0px 0px #023047',
+              }}
+            >
+              Check it out
+            </FancyButton>
+          </Link>
+          <div className="links">
+            <Link href={project.gitHub}>
+              <a>
+                <AiFillGithub />
+              </a>
+            </Link>
+            <Link href={project.link}>
+              <a>
+                <AiOutlineLink />
+              </a>
+            </Link>
+          </div>
+        </div>
       </div>
     </CaseStudyStyle>
   );
