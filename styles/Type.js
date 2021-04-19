@@ -35,6 +35,7 @@ export const H1highlight = styled.h1`
   white-space: nowrap;
   display: inline-block;
   max-width: 100%;
+  z-index: 30;
 
   ::before {
     content: '';
@@ -42,9 +43,11 @@ export const H1highlight = styled.h1`
     width: calc(100% + 10px);
     background-color: var(--yellow);
     bottom: 0;
-    left: --10px;
+    left: -10px;
     position: absolute;
     z-index: -1;
+    clip-path: polygon(0 0, 100% 15%, 100% 100%, 0% 100%);
   }
 `;
+
 export default Type;

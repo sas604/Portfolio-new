@@ -3,8 +3,9 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyles = createGlobalStyle`
 :root{
   --dark-blue: #023047;
-  --yellow:#FFA530;
+  --yellow:#f5a53d;
   --light-blue:#8ECAE6;
+  --white-blue: #d9edf7;
 }
 html {
   box-sizing: border-box;

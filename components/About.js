@@ -10,14 +10,22 @@ const AboutStyles = styled.section`
     flex: 2;
   }
   @media (max-width: 850px) {
-    div:last-of-type {
+    div:first-of-type {
       display: none;
     }
   }
 `;
 export default function About() {
   return (
-    <AboutStyles>
+    <AboutStyles id="about">
+      <div>
+        <Image
+          src="/surf.jpg"
+          width="750"
+          height="938"
+          alt="me but with surf"
+        />
+      </div>
       <div>
         <H1highlight>Something About Me</H1highlight>
         <p>
@@ -34,14 +42,6 @@ export default function About() {
           I’m not behind a screen, I spend my time photographing the beach,
           surfing at the beach, and cycling around the beach.
         </p>
-      </div>
-      <div>
-        <Image
-          src="/surf.jpg"
-          width="750"
-          height="938"
-          alt="me but with surf"
-        />
       </div>
     </AboutStyles>
   );
