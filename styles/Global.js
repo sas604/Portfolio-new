@@ -37,6 +37,19 @@ section {
     z-index: 1000;
     width: 300px
  }
+ #project-modal{
+  position: absolute;
+    top: 0;
+    left: 0;
+    top: 0;
+ bottom: 0;
+ }
+ .fixed{
+   overflow: hidden;
+   height: 100vh;
+   margin-right:20px;
+  
+ }
 `;
 
 export default GlobalStyles;

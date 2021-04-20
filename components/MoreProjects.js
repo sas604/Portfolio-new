@@ -1,7 +1,8 @@
 import { AnimatePresence } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import styled from 'styled-components';
+import Portal from '../hooks/Portal';
 import { H1highlight } from '../styles/Type';
 import ProjectTile from './PrjectTile';
 import ProjectModal from './ProjectModal';
@@ -34,21 +35,31 @@ const MoreProjectStyles = styled.ul`
 export default function MoreProjects({ moreProjects }) {
   const [modal, setModal] = useState(false);
   const [position, setPosition] = useState([0, 0]);
+
   const ref = useRef();
+  useEffect(() => {
+    if (modal) {
+      document.body.classList.add('fixed');
+    } else {
+      document.body.classList.remove('fixed');
+    }
+  });
   return (
-    <section>
+    <section style={{ position: 'relative' }}>
       <H1highlight>Other Projects</H1highlight>
       <p>Some smaller projects worth showing.</p>
       <MoreProjectStyles ref={ref}>
         <AnimatePresence>
           {modal && (
-            <ProjectModal
-              key="modal"
-              project={moreProjects[modal - 1]}
-              close={setModal}
-              position={position}
-              open={modal}
-            />
+            <Portal selector="#project-modal">
+              <ProjectModal
+                key="modal"
+                project={moreProjects[modal - 1]}
+                close={setModal}
+                position={position}
+                open={modal}
+              />
+            </Portal>
           )}
         </AnimatePresence>
         {moreProjects.map((project, i) => (
@@ -56,9 +67,8 @@ export default function MoreProjects({ moreProjects }) {
             <button
               type="button"
               onClick={(e) => {
-                const rect = ref.current.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+                const x = e.clientX;
+                const y = e.clientY;
                 setModal(i + 1);
                 setPosition([x, y]);
               }}
