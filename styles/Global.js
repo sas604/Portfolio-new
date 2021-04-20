@@ -52,7 +52,7 @@ section {
  .fixed{
    overflow: hidden;
    height: 100vh;
-   padding-right:15px;
+  
   
  }
 `;
