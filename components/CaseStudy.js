@@ -83,7 +83,7 @@ export default function CaseStudy({ project, num }) {
 
         <Image
           className="thumb"
-          src={`http:${project.coverImage.fields.file.url}`}
+          src={`https:${project.coverImage.fields.file.url}`}
           width="600"
           height="auto"
           objectFit="contain"
