@@ -1,7 +1,8 @@
 export default function Footer() {
   return (
     <footer>
-      <div>Copyrigth</div>
+      <hr />
+      <div>Footer</div>
     </footer>
   );
 }

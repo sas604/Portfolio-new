@@ -1,4 +1,5 @@
 import About from '../components/About';
+import Contact from '../components/Contact';
 import Hello from '../components/Hello';
 import Layout from '../components/Layout';
 import MoreProjects from '../components/MoreProjects';
@@ -12,6 +13,7 @@ export default function Home({ caseStudies, otherProjects }) {
       <About />
       <CaseStudies caseStudies={caseStudies} />
       <MoreProjects moreProjects={otherProjects} />
+      <Contact />
     </Layout>
   );
 }

@@ -1,7 +1,17 @@
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import Layout from '../components/Layout';
+import { H1highlight } from '../styles/Type';
 import fetchEntries from '../utils/contentful';
 
 export default function Post({ caseStudy }) {
-  return <h1>{caseStudy.title}</h1>;
+  return (
+    <Layout title={`- ${caseStudy.title} case study`}>
+      <section>
+        <H1highlight>{caseStudy.title} Case Study</H1highlight>
+        {documentToReactComponents(caseStudy.body)}
+      </section>
+    </Layout>
+  );
 }
 
 export async function getStaticPaths() {

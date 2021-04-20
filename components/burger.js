@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Portal from '../hooks/Portal';
@@ -58,6 +58,14 @@ const burgerMotion = {
 
 export default function Burger() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (open) {
+      document.body.classList.add('fixed');
+    } else {
+      document.body.classList.remove('fixed');
+    }
+  });
   return (
     <>
       <Portal selector="#mobile-menu">

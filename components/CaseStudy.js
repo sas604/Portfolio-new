@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { AiFillGithub, AiOutlineLink } from 'react-icons/ai';
 
-const FancyButton = styled(motion.a)`
+export const FancyButton = styled(motion.a)`
   display: block;
   background-color: var(--yellow);
   color: var(--blue);
@@ -13,7 +13,7 @@ const FancyButton = styled(motion.a)`
   max-width: 200px;
   text-align: center;
   text-transform: uppercase;
-  font-size: clamp(1rem 5vw 1.25rem);
+  font-size: clamp(1rem, 5vw, 1.25rem);
   line-height: 3rem;
   box-shadow: -6px -6px 0px 0px #023047;
   margin-top: 1.5rem;

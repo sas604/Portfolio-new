@@ -20,6 +20,11 @@ html,body{
   overflow-y: visible;
   max-height:100%;
 }
+body{
+  min-height:100vh;
+}
+
+
  ul{
    margin:0;
    padding:0;
@@ -47,7 +52,7 @@ section {
  .fixed{
    overflow: hidden;
    height: 100vh;
-   margin-right:20px;
+   padding-right:15px;
   
  }
 `;

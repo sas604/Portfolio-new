@@ -46,7 +46,7 @@ export const H1highlight = styled.h1`
     left: -10px;
     position: absolute;
     z-index: -1;
-    clip-path: polygon(0 0, 100% 15%, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 25%, 100% 100%, 0% 100%);
   }
 `;
 
