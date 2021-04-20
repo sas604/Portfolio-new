@@ -14,4 +14,5 @@ module.exports = {
     domains: ['images.ctfassets.net'],
   },
   distDir: 'out',
+  target: 'serverless',
 };
