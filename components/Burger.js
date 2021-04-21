@@ -62,8 +62,6 @@ export default function Burger() {
   useEffect(() => {
     if (open) {
       document.body.classList.add('fixed');
-    } else {
-      document.body.classList.remove('fixed');
     }
   });
   return (

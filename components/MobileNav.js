@@ -56,9 +56,12 @@ const MotionItems = {
   },
 };
 export default function MobileNav({ open }) {
+  const addFixed = (param) =>
+    param === 'closed' && document.body.classList.remove('fixed');
   return (
     <MobileNavStyle>
       <motion.ul
+        onAnimationComplete={(d) => addFixed(d)}
         initial={false}
         animate={open ? 'open' : 'closed'}
         variants={MotionNav}
