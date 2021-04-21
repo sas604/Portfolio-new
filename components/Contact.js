@@ -21,6 +21,7 @@ const SubmitBtn = styled(FancyButton)`
 `;
 const ContactStyles = styled.section`
   .icons {
+    margin-bottom: 1.5rem;
     flex: 1 220px;
     font-size: 2rem;
     * + * {
