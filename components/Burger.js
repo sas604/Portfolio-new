@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import { useRouter } from 'next/router';
 import Portal from '../hooks/Portal';
 import MobileNav from './MobileNav';
 
@@ -58,16 +59,36 @@ const burgerMotion = {
 
 export default function Burger() {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const animation = useAnimation();
 
   useEffect(() => {
     if (open) {
+      console.log(open);
       document.body.classList.add('fixed');
+      animation.start('open');
+    } else {
+      animation.start('closed');
     }
   });
+  useEffect(() => {
+    const handleRouteChange = (url, { shallow }) => {
+      setOpen(false);
+      animation.set('closed');
+    };
+
+    router.events.on('hashChangeComplete', handleRouteChange);
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method:
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    };
+  }, []);
   return (
     <>
       <Portal selector="#mobile-menu">
-        <MobileNav open={open} />
+        <MobileNav open={open} animation={animation} />
       </Portal>
       <BurgerStyles type="button" onClick={() => setOpen((s) => !s)}>
         <motion.div
