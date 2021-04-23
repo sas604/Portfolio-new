@@ -23,7 +23,8 @@ export const FancyButton = styled(motion.a)`
 const CaseStudyStyle = styled.div`
   padding: 4.5rem 0;
   display: flex;
-  gap: 1.5rem;
+  align-items: center;
+  gap: 3rem;
   ${({ num }) => num === 1 && 'flex-direction: row-reverse;'}
   .links-group {
     display: flex;
@@ -40,7 +41,7 @@ const CaseStudyStyle = styled.div`
   .caseStudy-image {
     position: relative;
     display: flex;
-    padding: 60px 0;
+    padding: 40px 0 0;
     img,
     .links {
       padding: 10px !important;
@@ -60,6 +61,12 @@ const CaseStudyStyle = styled.div`
     > * + * {
       margin-top: 1.5rem;
     }
+    .caseStudy-image {
+      .icons {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
   }
 `;
 
@@ -72,8 +79,8 @@ export default function CaseStudy({ project, num }) {
             <motion.div key={i}>
               <Image
                 quality="100"
-                width="40px"
-                height="40px"
+                width="35px"
+                height="35px"
                 objectFit="contain"
                 src={`https:${icon.fields.file.url}`}
               />
@@ -85,7 +92,7 @@ export default function CaseStudy({ project, num }) {
           className="thumb"
           src={`https:${project.coverImage.fields.file.url}`}
           width="600"
-          height="auto"
+          height="250"
           objectFit="contain"
           layout="intrinsic"
           alt={project.coverImage.fields.title}

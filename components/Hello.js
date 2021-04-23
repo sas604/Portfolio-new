@@ -82,7 +82,6 @@ const CTA = styled.a`
   color: ${({ bg }) =>
     bg === 'var(--light-blue)' ? 'var(--dark-blue)' : 'white'};
   flex: 1;
-  border-radius: 3px;
   font-weight: 700;
   max-width: 300px;
   text-align: center;

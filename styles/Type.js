@@ -6,6 +6,8 @@ const Type = createGlobalStyle`
     font-weight: 400;
     font-style: normal;
     color: var(--dark-blue);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   a {

@@ -34,7 +34,7 @@ const ContactStyles = styled.section`
     flex-wrap: wrap;
   }
   form {
-    box-shadow: -6px -6px 0px 0px var(--yellow);
+    box-shadow: -10px -10px 0px 0px var(--yellow);
     flex: 1 350px;
     display: flex;
     flex-direction: column;
