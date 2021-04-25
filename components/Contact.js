@@ -16,7 +16,7 @@ const SubmitBtn = styled(FancyButton)`
   appearance: none;
   border: none;
   margin-top: calc(1.5rem + 6px);
-  box-shadow: -6px -6px 0px 0px #d9edf7;
+  box-shadow: -6px -6px 0px 0px #fff;
   flex: 1;
   cursor: pointer;
   color: var(--dark-blue);
@@ -70,7 +70,7 @@ const ContactStyles = styled.section`
 export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState('');
-  const { values, updateValue } = useForm({
+  const { values, updateValue, reset } = useForm({
     email: '',
     name: '',
     subject: '',
@@ -95,6 +95,7 @@ export default function Contact() {
         throw new Error(text.msg);
       }
       setStatus(text.msg);
+      reset();
       setLoading(false);
     } catch (error) {
       setStatus(error.msg);
@@ -191,7 +192,7 @@ export default function Contact() {
             whileTap={{
               x: -6,
               y: -6,
-              boxShadow: '0px 0px 0px 0px #023047',
+              boxShadow: '0px 0px 0px 0px #fff',
             }}
             as={motion.button}
             type="submit"
