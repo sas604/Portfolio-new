@@ -6,7 +6,7 @@ import {
   AiFillLinkedin,
   AiFillTwitterCircle,
 } from 'react-icons/ai';
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 import styled from 'styled-components';
 import useForm from '../hooks/useForm';
 import { H1highlight } from '../styles/Type';
