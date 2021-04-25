@@ -64,17 +64,16 @@ export default function Burger() {
 
   useEffect(() => {
     if (open) {
-      console.log(open);
       document.body.classList.add('fixed');
       animation.start('open');
     } else {
       animation.start('closed');
     }
   });
+
   useEffect(() => {
     const handleRouteChange = () => {
       setOpen(false);
-      animation.set('closed');
     };
 
     router.events.on('hashChangeComplete', handleRouteChange);
@@ -82,6 +81,7 @@ export default function Burger() {
       router.events.off('routeChangeStart', handleRouteChange);
     };
   }, []);
+
   return (
     <>
       <Portal selector="#mobile-menu">

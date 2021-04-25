@@ -1,24 +1,65 @@
 export default (req, res) => {
-  const nodemailer = require('nodemailer');
+  const nodemailer = require('nodemailer'); // eslint-disable-line global-require
+  const validator = require('email-validator'); // eslint-disable-line global-require
+  const mailData = req.body;
+  console.log(mailData);
+  if (mailData.honey) {
+    console.log('boop');
+    res.status(418).json({ msg: 'Bip-boop' });
+    return;
+  }
+  if (!validator.validate(mailData.email)) {
+    res.status(400).json({ msg: 'You entered invalid email' });
+    return;
+  }
+
+  if (!mailData.name || !mailData.message) {
+    res.status(400).json({ msg: 'Please fill all required fields' });
+    return;
+  }
   const transporter = nodemailer.createTransport({
-    host: 'smtp.mailersend.net',
-    port: 587,
+    host: 'smtppro.zoho.com',
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASS,
     },
   });
 
-  // const mailData = {
-  //   from: 'demo@demo.com',
-  //   to: 'tagunovalexander@gmail.com',
-  //   subject: `Message From me `,
-  //   text: 'text',
-  //   html: '<div><p>Some text</p></p></div>',
-  // };
-  // transporter.sendMail(mailData, function (err, info) {
-  //   if (err) console.log(err);
-  //   else console.log(info);
-  // });
-  res.status(200).json('your message has ben sent');
+  const mailToSender = {
+    from: process.env.MAIL_USER,
+    to: mailData.email,
+    subject: `Thank You For Reaching Out`,
+    text: `Hi ${mailData.name}, 
+    Thank you for reaching out. I've got your message and will be in touch with you shortly.  
+    
+    Best regards 
+    Aleksandr Tagunov 
+    `,
+    html: `<section><h2 style="text-transform: capitalize;">Hi ${mailData.name},</h2><p>Thank you for reaching out. I've got your message and will be in touch with you shortly.</p><p>Best regards,<br/>Aleksandr Tagunov</p><p style="color:#bababa;">This is an automatically generated email, please do not reply.<p></section>`,
+  };
+  const mailTome = {
+    from: process.env.MAIL_USER,
+    to: 'aleksandr@tagunov.dev',
+    subject: `New form submission`,
+    text: `${mailData.name} at ${mailData.email} just made a submission, 
+    ${mailData.message}.  
+    
+    Best regards 
+    Your Bot
+    `,
+    html: `<section><h2><span style="text-transform: capitalize;">${mailData.name}</span> just made a submission,</h2><p>Contact at ${mailData.email}</p>${mailData.message}.</span><p>Best regards,<br/>Your Bot</p><p style="color:#bababa;">This is an automatically generated email, please do not reply.<p></section>`,
+  };
+
+  transporter.sendMail(mailToSender, function (err, info) {
+    if (err) {
+      res.end.status(500).json({ msg: 'Something went wrong' });
+    }
+  });
+  transporter.sendMail(mailTome, function (err, info) {
+    if (err) console.log(err);
+  });
+
+  res.status(200).json({ msg: 'Your message was sent successfully.' });
 };

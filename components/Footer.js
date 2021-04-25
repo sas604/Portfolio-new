@@ -24,7 +24,7 @@ export default function Footer() {
   return (
     <FooterStyles>
       <div>
-        <p>Build with 💓 and</p>
+        <p>Build with ❤️ and</p>
         <a aria-label="next-js" href="https://nextjs.org/">
           <SiNextDotJs />
         </a>

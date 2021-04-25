@@ -6,7 +6,9 @@ import {
   AiFillLinkedin,
   AiFillTwitterCircle,
 } from 'react-icons/ai';
+import { useState } from 'react/cjs/react.development';
 import styled from 'styled-components';
+import useForm from '../hooks/useForm';
 import { H1highlight } from '../styles/Type';
 import { FancyButton } from './CaseStudy';
 
@@ -34,6 +36,7 @@ const ContactStyles = styled.section`
     flex-wrap: wrap;
   }
   form {
+    position: relative;
     box-shadow: -10px -10px 0px 0px var(--yellow);
     flex: 1 350px;
     display: flex;
@@ -59,10 +62,44 @@ const ContactStyles = styled.section`
   label {
     display: block;
   }
+  .status {
+    position: absolute;
+    bottom: 24px;
+  }
 `;
 export default function Contact() {
-  const onSubmit = (e) => {
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState('');
+  const { values, updateValue } = useForm({
+    email: '',
+    name: '',
+    subject: '',
+    message: '',
+    honey: '',
+  });
+
+  const onSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+    try {
+      const res = await fetch('/api/contact', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify(values),
+      });
+      const text = await res.json();
+      if (!res.ok) {
+        throw new Error(text.msg);
+      }
+      setStatus(text.msg);
+      setLoading(false);
+    } catch (error) {
+      setStatus(error.msg);
+      setLoading(false);
+    }
   };
   return (
     <ContactStyles id="contacts">
@@ -98,19 +135,57 @@ export default function Contact() {
           <h2>Send Me a Message</h2>
           <label htmlFor="name">
             <span> Your Name</span>
-            <input type="text" id="name" name="name" />
+            <input
+              type="text"
+              id="name"
+              required
+              name="name"
+              value={values.name}
+              onChange={updateValue}
+            />
           </label>
           <label htmlFor="subject">
             <span> Subject</span>
-            <input type="text" id="subject" name="subject" />
+            <input
+              type="text"
+              required
+              id="subject"
+              name="subject"
+              value={values.subject}
+              onChange={updateValue}
+            />
           </label>
           <label htmlFor="email">
             <span>Your Email</span>
-            <input type="email" id="email" name="email" />
+            <input
+              type="email"
+              required
+              id="email"
+              name="email"
+              value={values.email}
+              onChange={updateValue}
+            />
+          </label>
+          <label htmlFor="honey" style={{ display: 'none' }}>
+            <span>Don't fill this field</span>
+            <input
+              type="text"
+              id="honey"
+              name="honey"
+              value={values.honey}
+              onChange={updateValue}
+            />
           </label>
           <label htmlFor="message">
             <span>Message</span>
-            <textarea name="message" id="message" rows="7" />
+            <textarea
+              required
+              name="message"
+              id="message"
+              rows="7"
+              value={values.message}
+              onChange={updateValue}
+            />
           </label>
           <SubmitBtn
             whileTap={{
@@ -121,8 +196,9 @@ export default function Contact() {
             as={motion.button}
             type="submit"
           >
-            Send
+            {loading ? 'Loading...' : 'Send'}
           </SubmitBtn>
+          {status && <p className="status">{status}</p>}
         </form>
       </div>
     </ContactStyles>

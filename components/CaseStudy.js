@@ -24,7 +24,8 @@ const CaseStudyStyle = styled.div`
   padding: 4.5rem 0;
   display: flex;
   align-items: center;
-  gap: 3rem;
+  justify-content: space-between;
+  gap: 4.5rem;
   ${({ num }) => num === 1 && 'flex-direction: row-reverse;'}
   .links-group {
     display: flex;
@@ -91,8 +92,8 @@ export default function CaseStudy({ project, num }) {
         <Image
           className="thumb"
           src={`https:${project.coverImage.fields.file.url}`}
-          width="600"
-          height="250"
+          width="500"
+          height="300"
           objectFit="contain"
           layout="intrinsic"
           alt={project.coverImage.fields.title}
