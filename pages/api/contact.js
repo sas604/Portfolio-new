@@ -1,10 +1,9 @@
-export default (req, res) => {
+export default async (req, res) => {
   const nodemailer = require('nodemailer'); // eslint-disable-line global-require
   const validator = require('email-validator'); // eslint-disable-line global-require
   const mailData = req.body;
-  console.log(mailData);
+
   if (mailData.honey) {
-    console.log('boop');
     res.status(418).json({ msg: 'Bip-boop' });
     return;
   }
@@ -52,16 +51,17 @@ export default (req, res) => {
     html: `<section><h2><span style="text-transform: capitalize;">${mailData.name}</span> just made a submission,</h2><p>Contact at ${mailData.email}</p>${mailData.message}.</span><p>Best regards,<br/>Your Bot</p><p style="color:#bababa;">This is an automatically generated email, please do not reply.<p></section>`,
   };
 
-  transporter.sendMail(mailToSender, function (err, info) {
-    if (err) {
-      console.log(info);
-      res.end.status(500).json({ msg: 'Something went wrong' });
-    }
-  });
-  transporter.sendMail(mailTome, function (err, info) {
-    console.log(info);
-    if (err) console.log(err);
-  });
+  const mailToSenderPromise = transporter.sendMail(mailToSender);
+  const mailToMePromise = transporter.sendMail(mailTome);
+  try {
+    const [toMe, toSender] = await Promise.all([
+      mailToMePromise,
+      mailToSenderPromise,
+    ]);
+  } catch (err) {
+    res.status(505).json({ msg: 'Something went wrong try again latter ' });
+    return;
+  }
 
   res.status(200).json({ msg: 'Your message was sent successfully.' });
 };

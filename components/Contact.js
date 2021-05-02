@@ -98,7 +98,7 @@ export default function Contact() {
       reset();
       setLoading(false);
     } catch (error) {
-      setStatus(error.msg);
+      setStatus(error.message);
       setLoading(false);
     }
   };
