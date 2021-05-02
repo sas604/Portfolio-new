@@ -54,10 +54,12 @@ export default (req, res) => {
 
   transporter.sendMail(mailToSender, function (err, info) {
     if (err) {
+      console.log(info);
       res.end.status(500).json({ msg: 'Something went wrong' });
     }
   });
   transporter.sendMail(mailTome, function (err, info) {
+    console.log(info);
     if (err) console.log(err);
   });
 

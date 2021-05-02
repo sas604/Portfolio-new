@@ -2,6 +2,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 const Type = createGlobalStyle`
   body {
+    font-display: swap;
     font-family: century-gothic, sans-serif;
     font-weight: 400;
     font-style: normal;
