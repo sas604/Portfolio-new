@@ -59,6 +59,7 @@ export default async (req, res) => {
       mailToSenderPromise,
     ]);
   } catch (err) {
+    console.log(err);
     res.status(505).json({ msg: 'Something went wrong try again latter ' });
     return;
   }
