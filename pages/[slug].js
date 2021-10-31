@@ -6,6 +6,7 @@ import fetchEntries from '../utils/contentful';
 export default function Post({ caseStudy }) {
   return (
     <Layout title={`- ${caseStudy.title} case study`}>
+      <h1 style={{margin:'30px auto', fontSize: '40px'}}>This section is under development come back latter... </h1>
       <section>
         <H1highlight>{caseStudy.title} Case Study</H1highlight>
         {documentToReactComponents(caseStudy.body)}
