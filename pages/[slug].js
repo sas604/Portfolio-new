@@ -7,7 +7,9 @@ export default function Post({ caseStudy }) {
   return (
     <Layout title={`- ${caseStudy.title} case study`}>
       <section>
-      <h1 style={{margin:'30px auto', fontSize: '40px', color:'red'}}>This section is under development, please come back later.</h1>
+        <h1 style={{ margin: '30px auto', fontSize: '40px', color: 'red' }}>
+          This section is under development, please come back later.
+        </h1>
         <H1highlight>{caseStudy.title} Case Study</H1highlight>
         {documentToReactComponents(caseStudy.body)}
       </section>
