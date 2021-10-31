@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SiNextDotJs } from 'react-icons/si';
+import NextLogo from '../public/next.svg';
 
 const FooterStyles = styled.footer`
   min-height: 68px;
@@ -26,7 +26,7 @@ export default function Footer() {
       <div>
         <p>Made with ❤️ and</p>
         <a aria-label="next-js" href="https://nextjs.org/">
-          <SiNextDotJs />
+          <NextLogo />
         </a>
       </div>
       <div>

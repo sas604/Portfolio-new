@@ -1,13 +1,13 @@
 module.exports = {
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // Note: we provide webpack above so you should not `require` it
-    // Perform customizations to webpack config
+  webpack(config) {
+    const fileLoaderRule = config.module.rules.find(
+      (rule) => rule.test && rule.test.test('.svg')
+    );
+    fileLoaderRule.exclude = /\.svg$/;
     config.module.rules.push({
       test: /\.svg$/,
-      use: ['@svgr/webpack'],
+      loader: require.resolve('@svgr/webpack'),
     });
-
-    // Important: return the modified config
     return config;
   },
   images: {
