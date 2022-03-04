@@ -17,7 +17,7 @@ const SubmitBtn = styled(FancyButton)`
   border: none;
   margin-top: calc(1.5rem + 6px);
   box-shadow: -6px -6px 0px 0px #fff;
-  flex: 1;
+  flex: 1 1 0;
   cursor: pointer;
   color: var(--dark-blue);
 `;

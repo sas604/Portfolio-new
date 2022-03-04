@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { AiFillGithub, AiOutlineLink } from 'react-icons/ai';
+import { BiLinkExternal } from 'react-icons/bi';
 
 export const FancyButton = styled(motion.a)`
   display: block;
@@ -28,15 +29,16 @@ const CaseStudyStyle = styled.div`
   gap: 4.5rem;
   ${({ num }) => num === 1 && 'flex-direction: row-reverse;'}
   .links-group {
+    margin-top: 1rem;
     display: flex;
+
     align-items: flex-end;
   }
   .links {
-    margin-left: 1.5rem;
     display: flex;
+    gap: 1rem;
     font-size: 40px;
     * + * {
-      margin-left: 1.5rem;
     }
   }
   .caseStudy-image {
@@ -108,7 +110,7 @@ export default function CaseStudy({ project, num }) {
         </p>
         <p>{project.description}</p>
         <div className="links-group">
-          <Link href={`/${project.title}`} passHref>
+          {/* <Link href={`/${project.title}`} passHref>
             <FancyButton
               whileTap={{
                 x: -6,
@@ -118,16 +120,20 @@ export default function CaseStudy({ project, num }) {
             >
               Case study
             </FancyButton>
-          </Link>
+          </Link> */}
           <div className="links">
             <Link href={project.gitHub}>
-              <a aria-label="GitHub">
+              <a target="_blank" aria-label="GitHub" title="GitHub">
                 <AiFillGithub />
               </a>
             </Link>
             <Link href={project.link}>
-              <a aria-label="Link to the project">
-                <AiOutlineLink />
+              <a
+                title="Link to the project"
+                target="_blank"
+                aria-label="Link to the project"
+              >
+                <BiLinkExternal />
               </a>
             </Link>
           </div>
